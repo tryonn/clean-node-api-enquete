@@ -10,6 +10,8 @@ interface SutTypes{
 
 // FACTORY
 const makeSut = (): SutTypes => {
+
+    // Mock for email Validator
     class EmailValidatorStub implements EmialValidator {
         isValid (email: string): boolean {
             return true
