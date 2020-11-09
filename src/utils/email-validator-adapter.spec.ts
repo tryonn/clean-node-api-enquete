@@ -8,6 +8,7 @@ jest.mock('validator', () => ({
     }
 }))
 
+// factory helper method
 const makeSut = (): EmailValidatorAdapter => {
     return new EmailValidatorAdapter
 }
