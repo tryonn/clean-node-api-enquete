@@ -1,3 +1,5 @@
+/* utilizando o padrao factory */
+
 import { DbAddAccount } from '../../data/usecases/add-account/db-add-account';
 import { AccountMongoRepository } from '../../infra/db/mongodb/account-repository/account';
 import { BcryptAdapter } from '../../infra/criptography/bcrypt-adapter';
