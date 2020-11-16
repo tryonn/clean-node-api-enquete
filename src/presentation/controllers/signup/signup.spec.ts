@@ -1,12 +1,14 @@
+
 import { HttpRequest } from '../../protocols/http';
 import { SignUpController } from './signup'
-import { EmailValidator, AccountModel, AddAccount, AddAccountModel } from '../signup/signup-protocols';
+import { EmailValidator, AccountModel, AddAccount, AddAccountModel, Validation } from '../signup/signup-protocols';
 import { InvalidParamError, MissingParamError, ServerError } from '../../errors';
 
 interface SutTypes {
     sut: SignUpController
-    emailValidatorStub: EmailValidator,
+    emailValidatorStub: EmailValidator
     addAccountStub: AddAccount
+    validationStub: Validation
 }
 
 // FACTORY
@@ -19,7 +21,7 @@ const makeEmailValidator = (): EmailValidator => {
     return new EmailValidatorStub()
 }
 
-const makeAddAccount = () => {
+const makeAddAccount = (): AddAccount => {
     class AddAccountStub implements AddAccount {
         async add(account: AddAccountModel): Promise<AccountModel> {
             return new Promise(resolve => resolve(makeFakeAccount()))
@@ -33,15 +35,28 @@ const makeFakeAccount = (): AccountModel => ({
     email: 'valid_email@mail.com',
     password: 'valid_password'
 }) 
+
+const makeValidationStub = (): Validation => {
+    class ValidationStub implements Validation {
+        validate (input: any): Error {
+            return null
+        }
+    }
+    return new ValidationStub()
+}
+
+
 const makeSut = (): SutTypes => {
     // Mock for email Validator
     const emailValidatorStub = makeEmailValidator()
     const addAccountStub = makeAddAccount()
-    const sut = new SignUpController(emailValidatorStub, addAccountStub)
+    const validationStub = makeValidationStub()
+    const sut = new SignUpController(emailValidatorStub, addAccountStub, validationStub)
     return {
         sut,
         emailValidatorStub,
-        addAccountStub
+        addAccountStub,
+        validationStub
     }
 }
 
@@ -191,5 +206,13 @@ describe('SignUp Controller', () => {
         const httpResponse = await sut.handle(makeFakeRequest())
         expect(httpResponse.statusCode).toBe(200)
         expect(httpResponse.body).toEqual(makeFakeAccount())
+    })
+
+    test('Should call Validation with correct value', async () => {
+        const { sut, validationStub } = makeSut()
+        const validationSpy = jest.spyOn(validationStub, 'validate')
+        const httpRequest = makeFakeRequest()
+        await sut.handle(httpRequest)
+        expect(validationSpy).toHaveBeenCalledWith(httpRequest.body)
     })
 })
