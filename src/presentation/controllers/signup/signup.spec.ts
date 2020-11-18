@@ -1,4 +1,4 @@
-import { badRequest } from '../../helpers/http-helpers';
+import { badRequest } from '../../helpers/http/http-helpers';
 import { HttpRequest } from '../../protocols/http';
 import { SignUpController } from './signup'
 import { AccountModel, AddAccount, AddAccountModel, Validation } from '../signup/signup-protocols';
