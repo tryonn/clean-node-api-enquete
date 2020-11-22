@@ -1,6 +1,7 @@
 /* utilizando o padrao factory */
+import { EmailValidatorAdapter } from '../../adapters/validators/email-validator-adapter';
 import { ValidationComposite, RequiredFieldValidation, EmailValidation } from '../../../presentation/helpers/validators';
-import { EmailValidatorAdapter } from '../../../utils/email-validator-adapter';
+
 import { Validation } from '../../../presentation/protocols/validation';
 
 
