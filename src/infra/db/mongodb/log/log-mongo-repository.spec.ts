@@ -1,4 +1,4 @@
-import { LogoMongoRepository } from './log';
+import { LogoMongoRepository } from './log-mongo-repository';
 import { Collection } from 'mongodb'
 import { MongoHelper } from '../helpers/mongo-helper'
 

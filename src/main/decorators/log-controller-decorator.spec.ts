@@ -1,5 +1,5 @@
-import { LogErrorRepository } from '../../data/protocols/db/log-error-repository';
-import { LogControllerDecorator } from './log'
+import { LogErrorRepository } from '../../data/protocols/db/log/log-error-repository';
+import { LogControllerDecorator } from './log-controller-decorator'
 import { Controller, HttpRequest, HttpResponse } from '../../presentation/protocols';
 import { serverError } from '../../presentation/helpers/http/http-helpers';
 
