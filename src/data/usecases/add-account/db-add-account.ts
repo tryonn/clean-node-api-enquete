@@ -5,7 +5,7 @@ export class DbAddAccount implements AddAccount {
     private readonly hesher: Hasher;
     private readonly addAccountRepository: AddAccountRepository
     
-    constructor(hesher: Hesher, addAccountRepository: AddAccountRepository){
+    constructor(hesher: Hasher, addAccountRepository: AddAccountRepository){
         this.hesher = hesher
         this.addAccountRepository = addAccountRepository
     }
