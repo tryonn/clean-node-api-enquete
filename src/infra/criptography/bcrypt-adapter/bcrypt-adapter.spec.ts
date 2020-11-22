@@ -1,5 +1,5 @@
 import bcrypt, { hash } from 'bcrypt'
-import { BcryptAdapter } from '../../infra/criptography/bcrypt-adapter'
+import { BcryptAdapter } from './bcrypt-adapter'
 
 // mock do bcrypt
 jest.mock('bcrypt', () => ({
