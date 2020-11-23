@@ -3,14 +3,11 @@
       "outDir": "dist",
       "module": "commonjs",
       "target": "es2020",
-      "esModuleInterop": true,
-      "sourceMap": true,
-      "rootDir": "src",
-      "baseUrl": "src",
-      "paths": {
-        "@/*": ["*"]
-      }
+      "esModuleInterop": true
     },
     "include": ["src"],
-    "exclude": []
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.test.ts"
+    ]
   }
