@@ -1,4 +1,7 @@
-FROM docker/whalesay:latest
-LABEL Name=cleannodeapienquete Version=0.0.1
-RUN apt-get -y update && apt-get install -y fortunes
-CMD ["sh", "-c", "/usr/games/fortune -a | cowsay"]
+FROM node:15
+WORKDIR /usr/src/clean-node-api-enquete
+COPY ./package.json ./
+RUN npm install --only=prod
+## COPY ./dist ./dist	
+## nao vai ser utilizado EXPOSE 5000	
+## CMD npm start 
