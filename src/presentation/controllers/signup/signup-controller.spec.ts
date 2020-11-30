@@ -1,7 +1,7 @@
-import { badRequest, serverError } from '../../helpers/http/http-helpers';
+import { badRequest, serverError, ok } from '../../helpers/http/http-helpers';
 import { HttpRequest } from '../../protocols/http';
-import { SignUpController } from './signup'
-import { AccountModel, AddAccount, AddAccountModel, Validation, Authentication, AuthenticationModel } from '../signup/signup-protocols';
+import { SignUpController } from './signup-controller'
+import { AccountModel, AddAccount, AddAccountModel, Validation, Authentication, AuthenticationModel } from '../signup/signup-controller-protocols';
 import { MissingParamError, ServerError } from '../../errors';
 
 interface SutTypes {
@@ -96,8 +96,7 @@ describe('SignUp Controller', () => {
     test('Should return 200 if valid data is provided', async () => {
         const { sut } = makeSut()
         const httpResponse = await sut.handle(makeFakeRequest())
-        expect(httpResponse.statusCode).toBe(200)
-        expect(httpResponse.body).toEqual(makeFakeAccount())
+        expect(httpResponse).toEqual(ok({accessToken: 'any_token'}))
     })
 
     test('Should call Validation with correct value', async () => {
