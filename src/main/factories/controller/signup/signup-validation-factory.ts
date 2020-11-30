@@ -1,8 +1,8 @@
 /* utilizando o padrao factory */
-import { EmailValidatorAdapter } from '../../adapters/validators/email-validator-adapter';
-import { ValidationComposite, EmailValidation, CompareFieldsValidation, RequiredFieldValidation } from '../../../presentation/helpers/validators';
+import { EmailValidatorAdapter } from '../../../adapters/validators/email-validator-adapter';
+import { ValidationComposite, EmailValidation, CompareFieldsValidation, RequiredFieldValidation } from '../../../../presentation/helpers/validators';
 
-import { Validation } from '../../../presentation/protocols/validation';
+import { Validation } from '../../../../presentation/protocols/validation';
 
 export const makeSignUpValidation = (): ValidationComposite => {
 
