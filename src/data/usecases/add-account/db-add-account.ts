@@ -2,15 +2,13 @@ import { AddAccount, AddAccountModel, Hasher, AccountModel, AddAccountRepository
 
 
 export class DbAddAccount implements AddAccount {
-    private readonly hesher: Hasher;
-    private readonly addAccountRepository: AddAccountRepository
-    private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
+   
     
-    constructor(hesher: Hasher, addAccountRepository: AddAccountRepository, loadAccountByEmailRepository: LoadAccountByEmailRepository){
-        this.hesher = hesher
-        this.addAccountRepository = addAccountRepository
-        this.loadAccountByEmailRepository = loadAccountByEmailRepository
-    }
+    constructor(
+        private readonly hesher: Hasher,
+        private readonly addAccountRepository: AddAccountRepository,
+        private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
+    ){}
 
     async add(accountData: AddAccountModel): Promise<AccountModel> {
         const account = await this.loadAccountByEmailRepository.loadByEmail(accountData.email)
