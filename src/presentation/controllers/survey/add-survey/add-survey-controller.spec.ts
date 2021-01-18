@@ -10,7 +10,11 @@ const makeFakeRequest = (): HttpRequest => ({
         answers: [{
                 image: 'any_image',
                 answer: 'any_answer'
-            }]
+            },
+            {
+                answer: 'any_answer_1'
+            }
+        ]
     }
 })
 
@@ -84,7 +88,7 @@ describe('AddSurvey Controller', () => {
     })
 
     test('Should return 204 on success ', async () => {
-        const { sut, addSurveyStub } = makeSut()
+        const { sut } = makeSut()
         const httpResponse = await sut.handle(makeFakeRequest())
         expect(httpResponse).toEqual(noContent)
     })
