@@ -46,6 +46,7 @@ const makeSut = (): SutTypes => {
 }
 
 describe('Auth Meddleware', () => {
+
     test('Should return 403 if no x-access-token exists in headers', async () => {
         const { sut, loadAccountByTokenStub } = makeSut()
         const httpResponse = await sut.handle({})
@@ -57,5 +58,12 @@ describe('Auth Meddleware', () => {
         const loadSpy = jest.spyOn(loadAccountByTokenStub, 'load')
         await sut.handle(makeFakeRequest())
         expect(loadSpy).toHaveBeenCalledWith('any_token')
+    })
+
+    test('Should return 403 if LoadAccountByToken returns null ', async () => {
+        const { sut, loadAccountByTokenStub } = makeSut()
+        jest.spyOn(loadAccountByTokenStub, 'load').mockReturnValueOnce(new Promise(rsolve => rsolve(null)))
+        const httpResponse = await sut.handle({})
+        expect(httpResponse).toEqual(forbidden(new AccessDeniedError()))
     })
 })
