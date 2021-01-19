@@ -22,8 +22,7 @@ export class AddSurveyController implements Controller {
             await this.addSurvey.add({
                 question,
                 answers
-            })
-    
+            })    
             return noContent();   
         } catch (error) {
             return serverError(error)

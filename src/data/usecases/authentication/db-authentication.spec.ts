@@ -33,7 +33,7 @@ const makeHashComparer = (): HashComparer => {
 
 const makeEncrypter = (): Encrypter => {
     class EncrypterStub implements Encrypter {
-        async encrypter (value: string): Promise<string> {
+        async encrypt (value: string): Promise<string> {
             return new Promise(resolve => resolve('any_token'))
         }
     }
@@ -103,7 +103,7 @@ describe('DbAuthentication UseCase', () => {
         expect(compareSpy).toHaveBeenCalledWith('any_password', 'hash_password')
     })
 
-    test('Should throws if hashComaparer throws', async () => {
+    test('Should throws if hash Comaparer throws', async () => {
         const { sut, hashComparerStub } = makeSut()
         jest.spyOn(hashComparerStub, 'compare').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
         const promise = sut.auth(makeFakeAuthenticationModel())
@@ -119,14 +119,14 @@ describe('DbAuthentication UseCase', () => {
 
     test('Should call Encrypter with correct id', async () => {
         const { sut, encrypterStub } = makeSut()
-        const encrypterSpy = jest.spyOn(encrypterStub, 'encrypter')
+        const encrypterSpy = jest.spyOn(encrypterStub, 'encrypt')
         await sut.auth(makeFakeAuthenticationModel())
         expect(encrypterSpy).toHaveBeenCalledWith('any_id')
     })
 
     test('Should throws if Encrypter throws', async () => {
         const { sut, encrypterStub } = makeSut()
-        jest.spyOn(encrypterStub, 'encrypter').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
+        jest.spyOn(encrypterStub, 'encrypt').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
         const promise = sut.auth(makeFakeAuthenticationModel())
         expect(promise).rejects.toThrow()
     })
@@ -148,6 +148,6 @@ describe('DbAuthentication UseCase', () => {
         const { sut, updateAccessTokenRepositoryStub } = makeSut()
         jest.spyOn(updateAccessTokenRepositoryStub, 'updateAccessToken').mockReturnValueOnce(new Promise((resolve, reject) => reject(new Error())))
         const promise = sut.auth(makeFakeAuthenticationModel())
-        expect(promise).rejects.toThrow()
+        await expect(promise).rejects.toThrow()
     })
 })

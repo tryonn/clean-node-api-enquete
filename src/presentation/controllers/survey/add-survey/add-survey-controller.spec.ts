@@ -36,7 +36,7 @@ const makeValidation = (): Validation => {
 const makeAddSurvey = (): AddSurvey => {
     class AddSurveyStub implements AddSurvey {
         async add (data: AddSurveyModel): Promise<void> {
-            return new Promise(resovle => resolve())
+            return new Promise(resolve => resolve())
         }
     }
 
@@ -76,7 +76,7 @@ describe('AddSurvey Controller', () => {
         const { sut, addSurveyStub } = makeSut()
         const addSpy = jest.spyOn(addSurveyStub, 'add')
         const httpResquest = makeFakeRequest();
-        await sut.handle(httpResquest)
+        sut.handle(httpResquest)
         expect(addSpy).toHaveBeenCalledWith(httpResquest.body)
     })
 
@@ -90,6 +90,6 @@ describe('AddSurvey Controller', () => {
     test('Should return 204 on success ', async () => {
         const { sut } = makeSut()
         const httpResponse = await sut.handle(makeFakeRequest())
-        expect(httpResponse).toEqual(noContent)
+        expect(httpResponse).toEqual(noContent())
     })
 })
