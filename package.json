@@ -1,6 +1,6 @@
 {
   "name": "clean-node-api",
-  "jest":{
+  "jest": {
     "verbose": true
   },
   "version": "1.2.1",
