@@ -1,6 +1,7 @@
 import { Collection } from 'mongodb';
 import { SurveyMongoRepository } from './survey-mongo-repository';
 import { MongoHelper } from '../helpers/mongo-helper'
+import MockDate from 'mockdate'
 
 let surveyCollection: Collection
 
@@ -8,10 +9,12 @@ describe('Account Mongo Repository', () => {
 
     beforeAll(async () => {
         await MongoHelper.connect(process.env.MONGO_URL)
+        MockDate.set(new Date())
     })
 
     afterAll(async () => {
         await MongoHelper.disconnect()
+        MockDate.reset()
     })
 
     beforeEach(async () => {
@@ -32,7 +35,8 @@ describe('Account Mongo Repository', () => {
                 answers: 'any_answer'
             },{
                 answers: 'other_answer'
-            }]
+            }],
+            date: new Date()
         })
 
         const survey = await surveyCollection.findOne({ question: 'any_question'})

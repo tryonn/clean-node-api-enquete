@@ -3,6 +3,7 @@ import { Validation } from './../../../protocols/validation';
 import { HttpRequest, AddSurvey, AddSurveyModel } from './add-survey-controller-protocols';
 import { AddSurveyController } from './add-survey-controller'
 import { resolve } from 'path';
+import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({
     body: {
@@ -14,7 +15,8 @@ const makeFakeRequest = (): HttpRequest => ({
             {
                 answer: 'any_answer_1'
             }
-        ]
+        ],
+        date: new Date()
     }
 })
 
@@ -55,6 +57,15 @@ const makeSut = (): SutTypes => {
 }
 
 describe('AddSurvey Controller', () => {
+
+    beforeAll(() => {
+        MockDate.set(new Date())
+    })
+
+    beforeAll(() => {
+        MockDate.reset()
+    })
+
 
     test('Should call Validation with correct values', async () => {
         const { validationStub, sut} = makeSut()

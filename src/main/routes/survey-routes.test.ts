@@ -75,7 +75,8 @@ describe('Survey Routes', () => {
                 },
                 {
                     answer: 'Answer 2'
-                }]
+                }],
+                date: new Date()
             })
             .expect(403)
         })
