@@ -5,7 +5,7 @@ import { AddSurveyController } from '../../../../../presentation/controllers/sur
 import { makeAddSurveyValidation } from './add-survey-validation-factory';
 import { makeDbAddSurvey } from '../../../use-cases/survey/add-survey/db-add-survey-factory';
 
-export const makeSurveyController = (): Controller => {
+export const makeAddSurveyController = (): Controller => {
     const controller = new AddSurveyController(makeAddSurveyValidation(), makeDbAddSurvey())
     return makeLogControllerDecorator(controller)
 }
