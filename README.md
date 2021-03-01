@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tryonn/clean-node-api-enquete.svg?branch=master)](https://travis-ci.com/tryonn/clean-node-api-enquete)
+
 # clean-node-api-enquete
 Aprendendo e revisando criação de uma API completa com Typescript utilizando TDD, Clean Architecture, Design Patterns e SOLID.
 
