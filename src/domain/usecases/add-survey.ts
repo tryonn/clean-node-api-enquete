@@ -1,11 +1,7 @@
-export interface SurveyAnswer {
-    image? : string,
-    answers: string
-}
-
+import { SurveyAnswerModel } from './../models/survey';
 export interface AddSurveyModel {
     question : string,
-    answers: SurveyAnswer[],
+    answers: SurveyAnswerModel[],
     date: Date
 }
 
