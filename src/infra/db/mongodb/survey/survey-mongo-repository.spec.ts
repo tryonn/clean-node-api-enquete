@@ -5,7 +5,11 @@ import MockDate from 'mockdate'
 
 let surveyCollection: Collection
 
-describe('Account Mongo Repository', () => {
+const makeSut = (): SurveyMongoRepository => {
+    return new SurveyMongoRepository()
+}
+
+describe('Survey Mongo Repository', () => {
 
     beforeAll(async () => {
         await MongoHelper.connect(process.env.MONGO_URL)
@@ -22,24 +26,24 @@ describe('Account Mongo Repository', () => {
         await surveyCollection.deleteMany({})
     })
 
-    const makeSut = (): SurveyMongoRepository => {
-        return new SurveyMongoRepository()
-    }
+    describe('Add', () => {
 
-    test('Should return an survey on add success', async () => {
-        const sut = makeSut()
-        await sut.add({
-            question: 'any_question',
-            answers: [{
-                image: 'any_image',
-                answers: 'any_answer'
-            },{
-                answers: 'other_answer'
-            }],
-            date: new Date()
+        test('Should add a survey on success', async () => {
+            const sut = makeSut()
+            await sut.add({
+                question: 'any_question',
+                answers: [{
+                    image: 'any_image',
+                    answers: 'any_answer'
+                },{
+                    answers: 'other_answer'
+                }],
+                date: new Date()
+            })
+    
+            const survey = await surveyCollection.findOne({ question: 'any_question'})
+            expect(survey).toBeTruthy()
         })
-
-        const survey = await surveyCollection.findOne({ question: 'any_question'})
-        expect(survey).toBeTruthy()
     })
 })
+
