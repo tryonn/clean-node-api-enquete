@@ -8,5 +8,5 @@ import { makeAddSurveyController } from '../factories/controller/survey/add-surv
 
 export default(router: Router):void => {
    router.post('/surveys', adminAuth, adaptRoute(makeAddSurveyController()))
-   router.get('/surveys', auth, adaptMiddleware(makeLoadSurveysController())
+   router.get('/surveys', auth, adaptMiddleware(makeLoadSurveysController()))
 }
