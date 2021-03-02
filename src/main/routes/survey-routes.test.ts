@@ -9,6 +9,29 @@ import env from '../config/env';
 let surveyCollection: Collection
 let accountCollection: Collection
 
+
+const makeAccessToken = async (): Promise<string> => {
+
+    const res = await accountCollection.insertOne({
+        name: 'tryonn',
+        email: 'tryonn@gmail.com',
+        password: '123321',
+        role: 'admin'
+    })
+    const id = res.ops[0]._id
+    const accessToken = sign( { id }, env.jwtSecret )
+    await accountCollection.updateOne({
+        _id: id 
+    }, 
+    {
+        $set: {
+            accessToken
+        }
+    })
+
+    return accessToken
+}
+
 describe('Survey Routes', () => {
 
     beforeAll(async () => {
@@ -48,25 +71,7 @@ describe('Survey Routes', () => {
 
 
         test('Should return 204 on add survey with valid accessToken', async () => {
-            const res = await accountCollection.insertOne({
-                name: 'tryonn',
-                email: 'tryonn@gmail.com',
-                password: '123321',
-                role: 'admin'
-            })
-            const id = res.ops[0]._id
-            const accessToken = sign( { id }, env.jwtSecret )
-
-
-            await accountCollection.updateOne({
-                _id: id 
-            }, 
-            {
-                $set: {
-                    accessToken
-                }
-            })
-
+           const accessToken = await makeAccessToken();
             await request(app)
             .post('/api/surveys')
             .set('x-access-token', accessToken)
@@ -88,37 +93,14 @@ describe('Survey Routes', () => {
 
     describe('GET /surveys', () => {
 
-        test('Should return 403 on load survey without accessToken', async () => {
+        test('Should return 204 on load survey without accessToken', async () => {
             await request(app)
             .get('/api/surveys')
             .expect(403)
         })
 
-        test('Should return 400 on not load survey', async () => {
-            const res = await accountCollection.insertOne({
-                name: 'tryonn',
-                email: 'tryonn@gmail.com',
-                password: '123321',
-                role: 'admin'
-            })
-            const id = res.ops[0]._id
-            const accessToken = sign( { id }, env.jwtSecret)
-            await accountCollection.updateOne({
-                _id: id 
-            }, {
-                    $set: {
-                        accessToken
-                    }
-                }
-            )
-           /* await surveyCollection.insertMany([{
-                question: 'any_question',
-                answers: [{
-                    image: 'any_image',
-                    answers: 'any_answer'
-                }],
-                date: new Date()
-            }])*/
+        test('Should return 204 on not load survey', async () => {
+            const accessToken = await makeAccessToken() 
             await request(app)
             .post('/api/surveys')
             .set('x-access-token', accessToken)
