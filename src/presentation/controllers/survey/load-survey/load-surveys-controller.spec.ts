@@ -25,7 +25,7 @@ const makeFakeSurveys = (): SurveysModel[] => {
         date: new Date()
     }]
 }
-interface Sutypes {
+type SutTypes = {
     sut: LoadSurveysController
     loadSurveysStub: LoadSurveys
 }
@@ -40,7 +40,7 @@ const makeLoadSurveys = (): LoadSurveys => {
     return new LoadSurveysStub()
 }
 
-const makeSut = (): Sutypes => {
+const makeSut = (): SutTypes => {
   
     const loadSurveysStub = makeLoadSurveys()
     const sut = new LoadSurveysController(loadSurveysStub)

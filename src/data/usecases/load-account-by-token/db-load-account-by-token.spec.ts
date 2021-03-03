@@ -13,7 +13,7 @@ const makeFakeAccount = (): AccountModel => ({
     password: 'hash_password'
 })
 
-interface SutTypes {
+type SutTypes = {
     sut: DbLoadAccountByToken
     decrypterStub: Decrypter
     loadAccountByTokenRepositoryStub: LoadAccountByTokenRepository
