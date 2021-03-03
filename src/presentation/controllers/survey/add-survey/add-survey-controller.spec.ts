@@ -1,8 +1,8 @@
-import { badRequest, serverError, noContent } from './../../../helpers/http/http-helpers';
-import { Validation } from './../../../protocols/validation';
+import { badRequest, serverError, noContent } from '@/presentation/helpers/http/http-helpers';
+import { Validation } from '@/presentation/protocols/validation';
 import { HttpRequest, AddSurvey, AddSurveyModel } from './add-survey-controller-protocols';
 import { AddSurveyController } from './add-survey-controller'
-import { resolve } from 'path';
+
 import MockDate from 'mockdate'
 
 const makeFakeRequest = (): HttpRequest => ({
