@@ -1,8 +1,8 @@
-import { DbLoadAccountByToken } from './../../../../../data/usecases/load-account-by-token/db-load-account-by-toke';
-import { JwtAdapter } from './../../../../../infra/criptography/jwt-adapter/jwt-adapter';
-import { LoadAccountByToken } from './../../../../../domain/usecases/load-account-by-token';
-import { AccountMongoRepository } from '../../../../../infra/db/mongodb/account/account-mongo-repository';
-import env from '../../../../config/env';
+import { DbLoadAccountByToken } from '@/data/usecases/load-account-by-token/db-load-account-by-toke';
+import { JwtAdapter } from '@/infra/criptography/jwt-adapter/jwt-adapter';
+import { LoadAccountByToken } from '@/domain/usecases/load-account-by-token';
+import { AccountMongoRepository } from '@/infra/db/mongodb/account/account-mongo-repository';
+import env from '@/main/config/env';
 /* utilizando o padrao factory */
 
 

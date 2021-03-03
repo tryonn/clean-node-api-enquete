@@ -1,6 +1,6 @@
-import { LogoMongoRepository } from './log-mongo-repository';
+import { LogoMongoRepository } from '@/infra/db/mongodb/log/log-mongo-repository';
 import { Collection } from 'mongodb'
-import { MongoHelper } from '../helpers/mongo-helper'
+import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
 
 describe('logError Mongo Repository', () => {
 

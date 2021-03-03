@@ -1,11 +1,11 @@
-import { ValidationComposite, RequiredFieldValidation } from '../../../../../validation/validators';
+import { ValidationComposite, RequiredFieldValidation } from '@/validation/validators';
 
-import { Validation } from '../../../../../presentation/protocols/validation';
+import { Validation } from '@/presentation/protocols/validation';
 import { makeAddSurveyValidation } from './add-survey-validation-factory';
 import MoackDate from 'mockdate'
 
 // mock da class validation-composite
-jest.mock('../../../../../validation/validators/validation-composite')
+jest.mock('@/validation/validators/validation-composite')
 
 describe('SurveyValidation Factory', () => {
 
