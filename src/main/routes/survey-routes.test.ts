@@ -86,25 +86,25 @@ describe('Survey Routes', () => {
                 }],
                 date: new Date()
             })
-            .expect(400)
+            .expect(204)
         })
     })
 
 
     describe('GET /surveys', () => {
 
-        test('Should return 204 on load survey without accessToken', async () => {
+        test('Should return 403 on load survey without accessToken', async () => {
             await request(app)
             .get('/api/surveys')
             .expect(403)
         })
 
-        test('Should return 204 on not load survey', async () => {
+        test('Should return 204 on load surveys with valid accessToken', async () => {
             const accessToken = await makeAccessToken() 
             await request(app)
-            .post('/api/surveys')
+            .get('/api/surveys')
             .set('x-access-token', accessToken)
-            .expect(400)
+            .expect(204)
         })
         
     })

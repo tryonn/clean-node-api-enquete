@@ -15,7 +15,6 @@ export const adaptMiddleware = (middleware: Middleware) => {
             Object.assign(req, httpResponse);
             next();
         } else {
-            // Design pattern PROXY
             res.status(httpResponse.statusCode).json({
                 error: httpResponse.body.message
             })
