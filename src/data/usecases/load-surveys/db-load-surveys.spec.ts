@@ -1,10 +1,10 @@
 import { DbLoadSurveys } from '@/data/usecases/load-surveys/db-load-surveys';
-import { SurveysModel } from '@/domain/models/survey';
+import { SurveyModel } from '@/domain/models/survey';
 import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-repository';
 import MockDate from 'mockdate'
 
 
-const makeFakeSurveys = (): SurveysModel[] => {
+const makeFakeSurveys = (): SurveyModel[] => {
     return [{
         id: 'any_id',
         question: 'any_question',
@@ -33,7 +33,7 @@ type SutTypes = {
 const makeLoadSurveysRepository = (): LoadSurveysRepository => {
 
     class LoadSurveysRepositoryStub implements LoadSurveysRepository {
-        async loadAll(): Promise<SurveysModel[]> {
+        async loadAll(): Promise<SurveyModel[]> {
             return new Promise(resolve => resolve(makeFakeSurveys()))
         }
     }

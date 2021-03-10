@@ -2,7 +2,7 @@ import { LoadSurveysRepository } from '@/data/protocols/db/survey/load-surveys-r
 import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper';
 import { AddSurveyModel } from '@/domain/usecases/add-survey';
 import { AddSurveyRepository } from '@/data/protocols/db/survey/add-survey-repository';
-import { SurveysModel } from '@/domain/models/survey';
+import { SurveyModel } from '@/domain/models/survey';
 
 export class SurveyMongoRepository implements AddSurveyRepository, LoadSurveysRepository {
 
@@ -11,9 +11,9 @@ export class SurveyMongoRepository implements AddSurveyRepository, LoadSurveysRe
         await surveyCollection.insertOne(surveyData)
     }
 
-    async loadAll(): Promise<SurveysModel[]> {
+    async loadAll(): Promise<SurveyModel[]> {
         const surverysCollection = await MongoHelper.getCollection('surveys')
-        const surveys: SurveysModel[] = await surverysCollection.find().toArray()
+        const surveys: SurveyModel[] = await surverysCollection.find().toArray()
         return surveys;
     }
 
