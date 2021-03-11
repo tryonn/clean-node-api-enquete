@@ -1,15 +1,11 @@
-import { LoadSurveyByIdRepository } from '@/data/protocols/db/survey/load-survey-by-id-repository';
-import { SurveyModel } from "@/domain/models/survey";
-import { LoadSurveyById } from '@/domain/usecases/load-survey-by-id';
-
+import { LoadSurveyByIdRepository, LoadSurveyById, SurveyModel } from './db-load-survey-by-id-protocols'
 
 export class DbLoadSurveyById implements LoadSurveyById {
-    constructor(private readonly loadSurveyByIdRespository: LoadSurveyByIdRepository){}
+  constructor (private readonly loadSurveyByIdRespository: LoadSurveyByIdRepository) {}
 
-    async loadById(id: string): Promise<SurveyModel> {
-        const survey = await this.loadSurveyByIdRespository.loadById(id);
+  async loadById (id: string): Promise<SurveyModel> {
+    const survey = await this.loadSurveyByIdRespository.loadById(id)
 
-        return survey;
-    }
-
+    return survey
+  }
 }
