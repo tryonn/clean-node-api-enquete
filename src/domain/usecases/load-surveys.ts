@@ -1,5 +1,5 @@
-import { SurveysModel } from '@/domain/models/survey';
+import { SurveyModel } from '@/data/usecases/add-account/db-add-account-protocols'
 
 export interface LoadSurveys {
-    load(): Promise<SurveysModel[]>
+  load: () => Promise<SurveyModel[]>
 }
