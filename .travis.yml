@@ -3,4 +3,5 @@ node_js:
   - 15
 script:
   - eslint 'src/**'
-  - npm run test:coveralls
+ # - npm run test:coveralls
+  - npm run test:ci && coveralls < coverage/lcov.info
