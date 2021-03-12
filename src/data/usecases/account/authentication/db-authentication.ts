@@ -1,4 +1,4 @@
-import { LoadAccountByEmailRepository, UpdateAccessTokenRepository, Authentication, AuthenticationModel, Encrypter, HashComparer } from '@/data/usecases/authentication/db-authentication-protocols';
+import { LoadAccountByEmailRepository, UpdateAccessTokenRepository, Authentication, AuthenticationModel, Encrypter, HashComparer } from '@/data/usecases/account/authentication/db-authentication-protocols';
 
 
 export class DbAuthentication implements Authentication {

@@ -1,6 +1,6 @@
 /* eslint-disable promise/param-names */
 import { LoadSurveysRepository, SurveyModel } from './db-load-surveys-protocols'
-import { DbLoadSurveys } from '@/data/usecases/load-surveys/db-load-surveys'
+import { DbLoadSurveys } from '@/data/usecases/survey/load-surveys/db-load-surveys'
 import MockDate from 'mockdate'
 
 const makeFakeSurveys = (): SurveyModel[] => {

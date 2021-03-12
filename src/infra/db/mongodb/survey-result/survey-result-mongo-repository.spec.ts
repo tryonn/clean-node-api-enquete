@@ -1,4 +1,4 @@
-import { AccountModel } from '@/data/usecases/add-account/db-add-account-protocols'
+import { AccountModel } from '@/data/usecases/account/add-account/db-add-account-protocols'
 import { SurveyModel } from '@/domain/models/survey'
 import { Collection } from 'mongodb'
 import { SurveyResultMongoRepository } from './survey-result-mongo-repository'

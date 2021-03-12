@@ -1,8 +1,8 @@
 /* eslint-disable promise/param-names */
-import { DbAddSurvey } from '@/data/usecases/add-survey/db-add-survey'
+import { DbAddSurvey } from '@/data/usecases/survey/add-survey/db-add-survey'
 import MockDate from 'mockdate'
 
-import { AddSurveyModel, AddSurveyRepository } from '@/data/usecases/add-account/db-add-account-protocols'
+import { AddSurveyModel, AddSurveyRepository } from '@/data/usecases/account/add-account/db-add-account-protocols'
 
 const makeFakeSurveyData = (): AddSurveyModel => ({
   question: 'any_question',
