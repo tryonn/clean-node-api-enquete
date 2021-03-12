@@ -1,7 +1,7 @@
-import { SurveyResultModel } from '@/domain/models/survey-result';
+import { SurveyResultModel } from '@/domain/models/survey-result'
 
-export type SavedSurveyResultModel = Omit<SurveyResultModel, 'id'>
+export type SaveSurveyResultModel = Omit<SurveyResultModel, 'id'>
 
 export interface SaveSurveyResult {
-    save(data: SavedSurveyResultModel): Promise<SurveyResultModel>
+  save: (data: SaveSurveyResultModel) => Promise<SurveyResultModel>
 }
