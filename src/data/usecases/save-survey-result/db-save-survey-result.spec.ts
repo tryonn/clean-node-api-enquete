@@ -1,9 +1,9 @@
 /* eslint-disable promise/param-names */
 
-import { SaveSurveyResultRepository, SurveyResultModel, SavedSurveyResultModel, DbSaveSurveyResult } from './db-save-survey-result-protocols'
+import { SaveSurveyResultRepository, SurveyResultModel, SaveSurveyResultModel, DbSaveSurveyResult } from './db-save-survey-result-protocols'
 import MockDate from 'mockdate'
 
-const makeFakeSurveyResultData = (): SavedSurveyResultModel => ({
+const makeFakeSurveyResultData = (): SaveSurveyResultModel => ({
   accountId: 'any_account_id',
   surveyId: 'any_survey_id',
   answer: 'any_answer',
