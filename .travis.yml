@@ -2,6 +2,6 @@ language: node_js
 node_js:
   - 15
 script:
-  - eslint "src/**"
+ # - eslint "src/**"
  # - npm run test:coveralls
   - npm run test:ci && coveralls < coverage/lcov.info
